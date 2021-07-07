@@ -15,7 +15,6 @@ public class UserStorage implements BaseStorageInterface {
         this.users = Adapter.getUserData();
     }
 
-    @Override
     public UserStorage getInstance() {
         if (single_instance == null) {
             single_instance = new UserStorage();

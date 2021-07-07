@@ -6,6 +6,7 @@ import java.util.UUID;
 import storages.UserDashboardStorage;
 import models.UserDashboard;
 import models.PolicyMapper;
+import enums.StorageEnum;
 import enums.UserConsentEnum;
 
 public class UserDashboardService {
@@ -13,10 +14,12 @@ public class UserDashboardService {
     private UserDashboardStorage userDashboards;
     private PolicyService policyService;
     private UserService userService;
+    private StorageStrategy strategy;
 
     public UserDashboardService() {
-        UserDashboardStorage storageInstance = UserDashboardStorage.getInstance();
-        this.userDashboards = storageInstance;
+        strategy.setStorageInstance(StorageEnum.DASHBOARD);
+        UserDashboardStorage storageInstance = (UserDashboardStorage) strategy.storageClass;
+        this.userDashboards = storageInstance.getInstance();
         this.policyService = new PolicyService();
         this.userService = new UserService();
     }

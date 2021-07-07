@@ -2,16 +2,21 @@ package services;
 
 import java.util.ArrayList;
 import java.util.UUID;
+
+import enums.StorageEnum;
 import storages.UserStorage;
 import models.User;
+import services.StorageStrategy;
 
 public class UserService {
 
     private UserStorage users;
+    private StorageStrategy strategy;
 
     public UserService() {
-        UserStorage storageInstance = UserStorage.getInstance();
-        this.users = storageInstance;
+        strategy.setStorageInstance(StorageEnum.USER);
+        UserStorage storageInstance = (UserStorage) strategy.storageClass;
+        this.users = storageInstance.getInstance();
     }
 
     public void addUser(User user) {

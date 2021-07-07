@@ -2,15 +2,20 @@ package services;
 
 import java.util.ArrayList;
 import java.util.UUID;
+
+import enums.StorageEnum;
 import storages.PolicyStorage;
 import models.Policy;
 
 public class PolicyService {
     
     private PolicyStorage policyPool;
+    private StorageStrategy strategy;
     
     public PolicyService() {
-        this.policyPool = PolicyStorage.getInstance();
+        strategy.setStorageInstance(StorageEnum.POLICY);
+        PolicyStorage storageInstance = (PolicyStorage) strategy.storageClass;
+        this.policyPool = storageInstance.getInstance();
     }
     
     public void addPolicy(Policy policy) {
