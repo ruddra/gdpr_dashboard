@@ -9,12 +9,12 @@ public class PolicyStorage implements BaseStorageInterface {
 
     public ArrayList<Policy> policies;
     private static PolicyStorage single_instance = null;
+    private DBAdapter Adapter;
 
     private PolicyStorage() {
-        this.policies = new ArrayList<Policy>();
+        this.policies = Adapter.getPolicyData();
     }
-
-    public static PolicyStorage getInstance() {
+    public PolicyStorage getInstance() {
         if (single_instance == null) {
             single_instance = new PolicyStorage();
         }

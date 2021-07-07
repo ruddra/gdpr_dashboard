@@ -9,9 +9,10 @@ public class UserDashboardStorage implements BaseStorageInterface {
 
     public ArrayList<UserDashboard> userDashboards;
     private static UserDashboardStorage single_instance = null;
+    private DBAdapter Adapter;
 
     private UserDashboardStorage() {
-        this.userDashboards = new ArrayList<UserDashboard>();
+        this.userDashboards = Adapter.getDashboardData();
     }
 
     public static UserDashboardStorage getInstance() {

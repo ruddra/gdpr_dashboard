@@ -9,12 +9,14 @@ public class UserStorage implements BaseStorageInterface {
 
     public ArrayList<User> users;
     private static UserStorage single_instance = null;
+    private DBAdapter Adapter;
 
     private UserStorage() {
-        this.users = new ArrayList<User>();
+        this.users = Adapter.getUserData();
     }
 
-    public static UserStorage getInstance() {
+    @Override
+    public UserStorage getInstance() {
         if (single_instance == null) {
             single_instance = new UserStorage();
         }
